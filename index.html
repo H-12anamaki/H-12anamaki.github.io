@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>观鸟网 - 个人博客</title>
+    <!-- 添加页面描述和关键词等元信息，利于搜索引擎优化 -->
+    <meta
+      name="description"
+      content="观鸟网个人博客，分享观鸟经验、知识以及鸟类照片，欢迎交流互动。"
+    />
+    <meta name="keywords" content="观鸟网, 个人博客, 观鸟经验, 鸟类照片" />
+    <style>
+      /* 引入字体，优化字体路径查找 */
+      @font-face {
+        font-family: pop;
+        src: url("font/pop.ttf");
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-image: url("images/OIP-b.jpg");
+        background-size: cover;
+        background-position: center;
+        font-family: pop, sans-serif;
+        color: black;
+        /* 设置默认文本颜色，使其更协调 */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        /* 确保页脚始终在底部 */
+        overflow: hidden;
+        /* 让页面整体不可滑动，保持整屏显示效果，可根据实际需求调整 */
+      }
+
+      header {
+        height: 120px; /* 适当调整高度，因为没有导航栏了 */
+        width: calc(100%-200px);
+        background-color: rgba(245, 245, 220, 0.8);
+        /* 半透明背景色，更美观 */
+        border: 1px solid rgba(245, 245, 220, 0.8);
+        border-radius: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* 调整对齐方式 */
+        align-items: center;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 40px;
+        /* 适当缩小标题字体大小 */
+        color: black;
+        /* 标题颜色调整 */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        /* 添加阴影效果 */
+      }
+
+      nav {
+        width: 100%;
+        /* background-color: rgba(245, 245, 220, 0.8); 给导航栏添加背景色，使其与整体风格统一 */
+        padding: 0; /* 添加一些内边距，让导航链接更美观 */
+        margin-bottom: 10px;
+      }
+
+      nav ul {
+        padding: 0;
+        list-style: none;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      nav ul li {
+        display: inline;
+        margin: 0 20px;
+        /* 调整菜单项间距 */
+      }
+
+      nav ul li a {
+        color: black;
+        /* 导航链接颜色调整 */
+        text-decoration: none;
+        font-size: 25px;
+        padding: 5px 10px;
+        border-radius: 10px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        /* 添加过渡效果 */
+      }
+
+      nav ul li a:hover {
+        background-color: rgba(245, 245, 220, 0.8);
+        /* 鼠标悬停背景色变化 */
+        color: black;
+      }
+
+      .section {
+        flex: 1;
+        padding: 20px;
+        display: none;
+        /* 初始隐藏各板块 */
+      }
+
+      h2 {
+        font-size: 30px;
+        /*
+             
+            margin-bottom: 15px;
+            text-align: center */
+        text-decoration: underline;
+        /* 添加下划线 */
+      }
+
+      h3 {
+        font-size: 27px;
+        color: black;
+        /* 三级标题颜色调整 */
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 25px;
+        line-height: 1.6;
+        /* 调整行高，优化阅读体验 */
+        text-align: justify;
+        /* 两端对齐，更美观 */
+      }
+
+      footer {
+        margin-top: auto;
+        /* 自动将页脚推到底部 */
+        background-color: rgba(245, 245, 220, 0.8);
+        text-align: center;
+        padding: 10px 0;
+        border-top: 1px solid rgba(245, 245, 220, 0.8);
+      }
+
+      .container {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 50px auto;
+
+        perspective: 1000px;
+        transform-style: preserve-3d;
+      }
+
+      img {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        /* 图片填充方式调整，保持比例且填满容器 */
+        transition: all 1s ease-in-out;
+        border-radius: 10px;
+        /* 图片添加圆角效果 */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        /* 图片添加阴影效果 */
+      }
+
+      img:nth-child(1) {
+        transform: rotateY(0deg) translateZ(120px);
+      }
+
+      img:nth-child(2) {
+        transform: rotateY(40deg) translateZ(120px);
+      }
+
+      img:nth-child(3) {
+        transform: rotateY(80deg) translateZ(120px);
+      }
+
+      img:nth-child(4) {
+        transform: rotateY(120deg) translateZ(120px);
+      }
+
+      img:nth-child(5) {
+        transform: rotateY(160deg) translateZ(120px);
+      }
+
+      img:nth-child(6) {
+        transform: rotateY(200deg) translateZ(120px);
+      }
+
+      img:nth-child(7) {
+        transform: rotateY(240deg) translateZ(120px);
+      }
+
+      img:nth-child(8) {
+        transform: rotateY(280deg) translateZ(120px);
+      }
+
+      img:nth-child(9) {
+        transform: rotateY(320deg) translateZ(120px);
+      }
+
+      /* 留言板样式部分，优化表单样式细节 */
+      form {
+        width: 70%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 20px;
+        font-weight: bold; /* 让标签文字加粗，更醒目 */
+      }
+
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 18px;
+        outline: none; /* 去除输入框获取焦点时的默认边框 */
+      }
+
+      input[type="submit"] {
+        background-color: #555;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        transition: background-color 0.3s ease;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #333;
+      }
+
+      .error {
+        color: red;
+        font-size: 16px;
+        margin-top: -10px;
+        margin-bottom: 10px;
+        display: none;
+      }
+
+      .dh {
+        width: 45%;
+        /* 可根据实际需求调整宽度占比 */
+        border: 1px solid gray;
+        border-radius: 5px;
+        /* overflow-y: auto;
+            max-height: 300px; */
+        position: relative;
+        left: 820px;
+        bottom: 180px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: stretch;
+        background-color: rgb(204, 237, 154);
+      }
+
+      .dh a {
+        padding: 10px;
+        text-decoration: none;
+        color: inherit;
+        border-bottom: 1px solid lightgray;
+        transition: background-color 0.3s ease;
+      }
+
+      .dh a:hover {
+        background-color: rgba(245, 245, 220, 0.8);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>观鸟网</h1>
+      <nav>
+        <ul>
+          <li><a href="#" class="nav-link" data-target="home">首页</a></li>
+          <li><a href="#" class="nav-link" data-target="about">关于我</a></li>
+          <li><a href="#" class="nav-link" data-target="blog">博客文章</a></li>
+          <li><a href="#" class="nav-link" data-target="contact">联系我</a></li>
+          <li><a href="#" class="nav-link" data-target="message">留言板</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section id="home" class="section">
+      <div class="home-text">
+        <h2>欢迎</h2>
+        <h3>欢迎来到观鸟网个人博客</h3>
+        <p>
+          在这里，我将分享我的观鸟经验和知识，希望与更多热爱自然的朋友交流。
+        </p>
+      </div>
+
+      <div class="dh">
+        <p>你所不知道的鸟类小知识</p>
+        <a href="https://www.huaniao8.com/niao/85637.html">环嘴鸥的那些事儿</a>
+        <a href="https://www.huaniao8.com/niao/70261.html"
+          >你所不知道的四川鸟-点翅朱雀</a
+        >
+        <a href="https://www.huaniao8.com/niao/51491.html"
+          >丑到深处自然萌-鲸头鹳</a
+        >
+        <a href="https://www.huaniao8.com/niao/76453.html"
+          >鸟中的建筑大师-中华攀雀</a
+        >
+        <a href="https://www.huaniao8.com/niao/67485.html">鸟界幽灵-游隼</a>
+        <!-- <a href="https://www.huaniao8.com/niao/59918.html">鸟界美猴王-萨克森极乐鸟</a>
+            <a href="https://www.huaniao8.com/niao/60999.html">萌王-北长尾山雀</a> -->
+      </div>
+    </section>
+    <section id="about" class="section">
+      <h2>关于我</h2>
+      <p>
+        我是一个热爱自然的观鸟爱好者，喜欢探索大自然的奥秘，记录美丽的鸟类。
+      </p>
+      <p>以下是我拍摄的鸟类照片的3D相册。</p>
+      <div class="container">
+        <img src="./images/favorite-1_th.jpg" alt="" />
+        <img src="./images/favorite-2_th.jpg" alt="" />
+        <img src="./images/favorite-3_th.jpg" alt="" />
+        <img src="./images/favorite-4_th.jpg" alt="" />
+        <img src="./images/favorite-5_th.jpg" alt="" />
+        <img src="./images/favorite-6_th.jpg" alt="" />
+        <img src="./images/favorite-7_th.jpg" alt="" />
+        <img src="./images/favorite-8_th.jpg" alt="" />
+        <img src="./images/e99cc8692c1b0c028654b3677ba16516.jpg" alt="" />
+      </div>
+    </section>
+    <section id="blog" class="section">
+      <h2>博客文章</h2>
+      <article>
+        <h3>观鸟初体验</h3>
+        <p>这是我的第一篇观鸟文章，记录了我第一次观鸟的经历和感受。</p>
+        <a href="blog-post-1.html">阅读全文</a>
+      </article>
+    </section>
+    <section id="contact" class="section">
+      <h2>联系我</h2>
+      <p>如果你有任何问题或建议，可以通过以下方式联系我：</p>
+      <ul>
+        <li>邮箱: example@example.com</li>
+        <li>
+          GitHub:
+          <a href="https://github.com/yourusername" target="_blank"
+            >yourusername</a
+          >
+        </li>
+      </ul>
+      <ul>
+        <img src="./images/small_2022090915855691.gif" alt="" />
+      </ul>
+    </section>
+    <section id="message" class="section">
+      <h2>留言板</h2>
+      <form id="messageForm">
+        <label for="name">姓名：</label>
+        <input type="text" id="name" required />
+        <span class="error" id="nameError">请填写姓名</span>
+        <label for="email">邮箱：</label>
+        <input type="email" id="email" required />
+        <span class="error" id="emailError">请填写正确的邮箱地址</span>
+        <label for="messageContent">留言内容：</label>
+        <textarea id="messageContent" rows="5" required></textarea>
+        <span class="error" id="messageError">请填写留言内容</span>
+        <input type="submit" value="提交留言" />
+      </form>
+      <script>
+        document
+          .getElementById("messageForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            // 阻止表单默认提交行为
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var messageContent =
+              document.getElementById("messageContent").value;
+            var nameError = document.getElementById("nameError");
+            var emailError = document.getElementById("emailError");
+            var messageError = document.getElementById("messageError");
+
+            // 验证姓名是否为空
+            if (name === "") {
+              nameError.style.display = "block";
+              return;
+            } else {
+              nameError.style.display = "none";
+            }
+
+            // 验证邮箱格式是否正确（使用更严格的正则表达式验证邮箱格式）
+            var emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+            if (!emailRegex.test(email)) {
+              emailError.style.display = "block";
+              return;
+            } else {
+              emailError.style.display = "none";
+            }
+
+            // 验证留言内容是否为空
+            if (messageContent === "") {
+              messageError.style.display = "block";
+              return;
+            } else {
+              messageError.style.display = "none";
+            }
+
+            // 如果验证通过，这里可以改为使用AJAX等技术将留言信息发送到服务器端保存，此处仅模拟弹出提示
+            alert(
+              "姓名：" +
+                name +
+                "\n邮箱：" +
+                email +
+                "\n留言内容：" +
+                messageContent
+            );
+          });
+        // 获取所有导航链接
+        const navLinks = document.querySelectorAll(".nav-link");
+        const sections = {
+          home: document.getElementById("home"),
+          about: document.getElementById("about"),
+          blog: document.getElementById("blog"),
+          contact: document.getElementById("contact"),
+          message: document.getElementById("message"),
+        };
+        // 给每个导航链接添加点击事件监听器，优化切换板块逻辑
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            // 阻止默认链接行为
+            const target = this.getAttribute("data-target");
+
+            // 隐藏所有部分
+            for (let key in sections) {
+              sections[key].style.display = "none";
+            }
+
+            // 根据点击的链接显示对应的板块
+            sections[target].style.display = "block";
+          });
+        });
+
+        // 初始显示首页
+        sections.home.style.display = "block";
+      </script>
+    </section>
+    <footer>
+      <p>&copy; 2023 观鸟网个人博客. 版权所有.</p>
+      <p><a href="./images/dove.png">鸽子图标</a>由Lorc绘制。</p>
+    </footer>
+    <script>
+      let times = 0;
+      let container = document.querySelector(".container");
+      container.onclick = function () {
+        times++;
+        const imgs = document.querySelectorAll("img");
+        imgs.forEach((item, index) => {
+          const stylestr = `rotateY(${
+            (times + index) * 40
+          }deg)  translateZ(300px)`;
+          console.log(stylestr);
+          item.style.transform = stylestr;
+        });
+      };
+    </script>
+  </body>
+</html>
